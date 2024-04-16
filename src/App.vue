@@ -1,10 +1,32 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <div id="app">
+    <WeatherForm @weather="setWeatherData" />
+    <WeatherDisplay :weatherData="weatherData" />
+  </div>
 </template>
+
+<script>
+import WeatherForm from "./components/WeatherForm.vue";
+import WeatherDisplay from "./components/WeatherDisplay.vue";
+
+export default {
+  name: "App",
+  components: {
+    WeatherForm,
+    WeatherDisplay,
+  },
+  data() {
+    return {
+      weatherData: null,
+    };
+  },
+  methods: {
+    setWeatherData(data) {
+      this.weatherData = data;
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
